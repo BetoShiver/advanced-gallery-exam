@@ -6,8 +6,8 @@ This app is simple, you write a tag at the top and you get images from flickr wi
 ## Your Tasks
 
 ### Step 1 - Installation
-- Fork this repo to your own account
-- Install the dependencies and run it
+- Fork this repo to your own account  --Done
+- Install the dependencies and run it -- Done
 
 ### Step 2 - Image Actions
 Each image has three buttons that appear on mouse hover. You need to make them work.
