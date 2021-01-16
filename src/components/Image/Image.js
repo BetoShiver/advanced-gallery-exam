@@ -1,13 +1,14 @@
-import React from "react";
-import PropTypes from "prop-types";
-import FontAwesome from "react-fontawesome";
-import Modal from "react-modal";
-import "./Image.scss";
+import React from 'react';
+import PropTypes from 'prop-types';
+import FontAwesome from 'react-fontawesome';
+import Modal from 'react-modal';
+import './Image.scss';
 
 class Image extends React.Component {
   static propTypes = {
     dto: PropTypes.object,
     galleryWidth: PropTypes.number,
+    removeImg: PropTypes.func
   };
 
   constructor(props) {
@@ -26,8 +27,8 @@ class Image extends React.Component {
     const targetSize = 200;
     const imagesPerRow = Math.round(galleryWidth / targetSize);
     const size = galleryWidth / imagesPerRow;
-    const expandedSmallScreen = galleryWidth * 0.8
-    const expandedSize = ( galleryWidth > 600 )? 550 : expandedSmallScreen;
+    const expandedSmallScreen = galleryWidth * 0.8;
+    const expandedSize = galleryWidth > 600 ? 550 : expandedSmallScreen;
     this.setState({
       size,
       expandedSize
@@ -40,24 +41,24 @@ class Image extends React.Component {
       newDegrees -= newDegrees;
     }
     this.setState({
-      currentDegrees: newDegrees,
+      currentDegrees: newDegrees
     });
   }
 
   handleExpand() {
     this.setState({
-      ModalIsOpen: true,
+      ModalIsOpen: true
     });
   }
 
   closeModal() {
     this.setState({
-      ModalIsOpen: false,
+      ModalIsOpen: false
     });
   }
 
   handleDelete() {
-    console.log("delete clicked");
+    console.log('delete clicked');
   }
 
   componentDidMount() {
@@ -75,8 +76,8 @@ class Image extends React.Component {
         style={{
           transform: `rotate(${this.state.currentDegrees}deg)`,
           backgroundImage: `url(${this.urlFromDto(this.props.dto)})`,
-          width: this.state.size + "px",
-          height: this.state.size + "px",
+          width: this.state.size + 'px',
+          height: this.state.size + 'px'
         }}
       >
         <div
@@ -107,10 +108,10 @@ class Image extends React.Component {
           style={{
             content: {
               padding: 0,
-              margin: "auto",
-              width: this.state.expandedSize + "px",
-              height: this.state.expandedSize + "px",
-            },
+              margin: 'auto',
+              width: this.state.expandedSize + 'px',
+              height: this.state.expandedSize + 'px'
+            }
           }}
         >
           <div
@@ -119,13 +120,13 @@ class Image extends React.Component {
             style={{
               transform: `rotate(${this.state.currentDegrees}deg)`,
               backgroundImage: `url(${this.urlFromDto(this.props.dto)})`,
-              width: "100%",
-              height: "100%",
+              width: '100%',
+              height: '100%'
             }}
           >
             <div
               style={{
-                transform: `rotate(${360 - this.state.currentDegrees}deg)`,
+                transform: `rotate(${360 - this.state.currentDegrees}deg)`
               }}
             >
               <FontAwesome
