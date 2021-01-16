@@ -58,7 +58,7 @@ class Image extends React.Component {
   }
 
   handleDelete() {
-    console.log('delete clicked');
+    this.props.removeImg(this.props.dto);
   }
 
   componentDidMount() {
