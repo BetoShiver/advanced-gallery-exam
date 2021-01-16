@@ -12,7 +12,7 @@ This app is simple, you write a tag at the top and you get images from flickr wi
 ### Step 2 - Image Actions
 Each image has three buttons that appear on mouse hover. You need to make them work.
 1. Delete: clicking the delete button should remove the image from the display.
-2. Rotate: each click should rotate the image by 90 degrees.
+2. Rotate: each click should rotate the image by 90 degrees. -- Done
 3. Expand: clicking an image should display this image in a larger view.
 
 ### Step 3 - Gallery Actions

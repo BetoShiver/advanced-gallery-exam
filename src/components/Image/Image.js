@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import FontAwesome from "react-fontawesome";
+import Modal from "react-modal";
 import "./Image.scss";
 
 class Image extends React.Component {
@@ -15,9 +16,9 @@ class Image extends React.Component {
     this.state = {
       size: 200,
       currentDegrees: 0,
-      btnDegrees: 360
+      ModalIsOpen: false,
+      expandedSize: 550
     };
-    this.rotateImg = this.rotateImg.bind(this);
   }
 
   calcImageSize() {
@@ -25,8 +26,11 @@ class Image extends React.Component {
     const targetSize = 200;
     const imagesPerRow = Math.round(galleryWidth / targetSize);
     const size = galleryWidth / imagesPerRow;
+    const expandedSmallScreen = galleryWidth * 0.8
+    const expandedSize = ( galleryWidth > 600 )? 550 : expandedSmallScreen;
     this.setState({
       size,
+      expandedSize
     });
   }
 
@@ -37,16 +41,23 @@ class Image extends React.Component {
     }
     this.setState({
       currentDegrees: newDegrees,
-      btnDegrees: 360 - newDegrees,
+    });
+  }
+
+  handleExpand() {
+    this.setState({
+      ModalIsOpen: true,
+    });
+  }
+
+  closeModal() {
+    this.setState({
+      ModalIsOpen: false,
     });
   }
 
   handleDelete() {
-    console.log("rotate clicked");
-  }
-
-  handleExpand() {
-    console.log("rotate clicked");
+    console.log("delete clicked");
   }
 
   componentDidMount() {
@@ -68,16 +79,76 @@ class Image extends React.Component {
           height: this.state.size + "px",
         }}
       >
-        <div style={{ transform: `rotate(${this.state.btnDegrees}deg)` }}>
+        <div
+          style={{ transform: `rotate(${360 - this.state.currentDegrees}deg)` }}
+        >
           <FontAwesome
             onClick={() => this.handleRotate()}
             className="image-icon"
             name="sync-alt"
             title="rotate"
           />
-          <FontAwesome className="image-icon" name="trash-alt" title="delete" />
-          <FontAwesome className="image-icon" name="expand" title="expand" />
+          <FontAwesome
+            onClick={() => this.handleDelete()}
+            className="image-icon"
+            name="trash-alt"
+            title="delete"
+          />
+          <FontAwesome
+            onClick={() => this.handleExpand()}
+            className="image-icon"
+            name="expand"
+            title="expand"
+          />
         </div>
+        <Modal
+          isOpen={this.state.ModalIsOpen}
+          onRequestClose={() => this.closeModal()}
+          style={{
+            content: {
+              padding: 0,
+              margin: "auto",
+              width: this.state.expandedSize + "px",
+              height: this.state.expandedSize + "px",
+            },
+          }}
+        >
+          <div
+            className="image-root"
+            overlayClassName="expanded"
+            style={{
+              transform: `rotate(${this.state.currentDegrees}deg)`,
+              backgroundImage: `url(${this.urlFromDto(this.props.dto)})`,
+              width: "100%",
+              height: "100%",
+            }}
+          >
+            <div
+              style={{
+                transform: `rotate(${360 - this.state.currentDegrees}deg)`,
+              }}
+            >
+              <FontAwesome
+                onClick={() => this.handleRotate()}
+                className="image-icon"
+                name="sync-alt"
+                title="rotate"
+              />
+              <FontAwesome
+                onClick={() => this.handleDelete()}
+                className="image-icon"
+                name="trash-alt"
+                title="delete"
+              />
+              <FontAwesome
+                onClick={() => this.closeModal()}
+                className="image-icon"
+                name="compress"
+                title="contract"
+              />
+            </div>
+          </div>
+        </Modal>
       </div>
     );
   }

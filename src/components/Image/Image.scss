@@ -48,3 +48,17 @@
   }
 }
 
+.expanded {
+    background-color: transparent;
+    border: none;
+    margin: auto;
+}
+
+
+
+
+
+
+.ReactModal__Body--open {
+    overflow: hidden;
+}
