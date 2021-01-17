@@ -105,6 +105,7 @@ class Image extends React.Component {
         <Modal
           isOpen={this.state.ModalIsOpen}
           onRequestClose={() => this.closeModal()}
+          appElement={document.getElementById('app')}
           style={{
             content: {
               padding: 0,
@@ -116,7 +117,6 @@ class Image extends React.Component {
         >
           <div
             className="image-root"
-            overlayClassName="expanded"
             style={{
               transform: `rotate(${this.state.currentDegrees}deg)`,
               backgroundImage: `url(${this.urlFromDto(this.props.dto)})`,
