@@ -126,7 +126,8 @@ class Image extends React.Component {
           >
             <div
               style={{
-                transform: `rotate(${360 - this.state.currentDegrees}deg)`
+                transform: `rotate(${360 - this.state.currentDegrees}deg)`,
+                cursor: 'pointer'
               }}
             >
               <FontAwesome
