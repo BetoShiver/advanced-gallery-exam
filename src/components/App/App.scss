@@ -1,4 +1,5 @@
-body, html {
+body,
+html {
   padding: 0;
   margin: 0;
 }
@@ -8,7 +9,12 @@ body, html {
 }
 
 .app-header {
-  background-color: #222;
+  background: vv;
+  background: radial-gradient(
+    circle,
+    rgba(34, 51, 51, 1) 0%,
+    rgba(34, 34, 34, 1) 95%
+  );
   padding: 10px;
   color: white;
   font-size: 20pt;
@@ -23,4 +29,32 @@ body, html {
   color: #666;
   width: 400px;
   margin-bottom: 30px;
+}
+
+.set-user {
+  text-align: center;
+  border-radius: 6px;
+}
+
+.submit {
+  background-color: rgb(48, 45, 59);
+  border: 1px solid grey;
+  color: white;
+  border-radius: 3px;
+  font-size: larger;
+  cursor: pointer;
+  padding: 2px 6px;
+  margin-left: 1rem;
+}
+
+.disclaimer {
+  font-size: 11px;
+}
+
+.changeUser{
+    font-size: 13px;
+
+    >Span {
+      text-decoration: underline;
+    }
 }

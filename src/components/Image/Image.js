@@ -35,6 +35,10 @@ class Image extends React.Component {
     });
   }
 
+  componentDidMount() {
+    this.calcImageSize();
+  }
+
   handleRotate() {
     let newDegrees = this.state.currentDegrees + 90;
     if (newDegrees >= 360) {
@@ -59,10 +63,6 @@ class Image extends React.Component {
 
   handleDelete() {
     this.props.removeImg(this.props.dto);
-  }
-
-  componentDidMount() {
-    this.calcImageSize();
   }
 
   urlFromDto(dto) {

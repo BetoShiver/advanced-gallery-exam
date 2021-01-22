@@ -24,8 +24,7 @@ class Gallery extends React.Component {
       images: [],
       galleryWidth: this.getGalleryWidth(),
       currentPage: 1,
-      hasMore: true,
-      dragging: NaN
+      hasMore: true
     };
   }
 
@@ -69,14 +68,29 @@ class Gallery extends React.Component {
     this.setState({
       galleryWidth: document.body.clientWidth
     });
+    window.addEventListener(
+      'resize',
+      console.log('resized')
+      // () => {
+      // ;
+      // this.setState({
+      //   galleryWidth: document.body.clientWidth
+      // })}
+    );
+    }
+    
+    componentWillUnmount() {
+      window.removeEventListener('resize',  this.setState({
+        galleryWidth: document.body.clientWidth
+      }));
+    }
+    
+    componentWillReceiveProps(props) {
+      this.setState({ currentPage: 1, images: [], hasMore: true }, () => {
+        this.getImages(props.tag);
+      });
   }
-
-  componentWillReceiveProps(props) {
-    this.setState({ currentPage: 1, images: [], hasMore: true }, () => {
-      this.getImages(props.tag);
-    });
-  }
-
+  
   removeImg(dto) {
     const { images } = this.state;
     const index = images.indexOf(dto);
@@ -97,15 +111,10 @@ class Gallery extends React.Component {
     );
   }
 
-  
   handleDrop(event, index) {
     event.preventDefault();
     const dropped = event.dataTransfer.getData('text');
-    const images = reorder(
-      this.state.images,
-      dropped,
-      index
-    );
+    const images = reorder(this.state.images, dropped, index);
     this.setState({
       images
     });
@@ -115,9 +124,8 @@ class Gallery extends React.Component {
     e.dataTransfer.setData('text/plain', index);
   }
 
-
   dragOver(e) {
-    e.preventDefault()
+    e.preventDefault();
   }
 
   render() {
