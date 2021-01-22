@@ -2,6 +2,7 @@ import React from 'react';
 import './App.scss';
 import Gallery from '../Gallery';
 import Modal from 'react-modal';
+import ChangeUser from '../ChangeUser';
 class App extends React.Component {
   static propTypes = {};
 
@@ -13,17 +14,6 @@ class App extends React.Component {
       user: ''
     };
   }
-
-  componentDidMount() {
-    console.log('user' );
-    let user = window.localStorage.getItem('user')
-    if (!user === '') {
-      this.setState({
-        user,
-        showSetUser: false
-      });
-    }
-  }
   
   setUser(e) {
     e.preventDefault()
@@ -33,6 +23,15 @@ class App extends React.Component {
     });
   }
   
+  changeUser(user) {
+    if (user) {
+      this.setState({
+        user,
+        showSetUser: false
+      });
+    }
+  }
+
   render() {
     return (
       <div className="app-root">
@@ -43,10 +42,11 @@ class App extends React.Component {
             onChange={(event) => this.setState({ tag: event.target.value })}
             value={this.state.tag}
           />
-          <p className="changeUser">
-            Not {this.state.user}?{' '}
-            <span onClick={() => this.setState({showSetUser:true})}>Click here</span>{' '}
-          </p>
+          <ChangeUser
+            user={this.state.user}
+            openModal={() => this.setState({ showSetUser: true })}
+            setUser={(user) => this.changeUser(user)}
+          />
         </div>
         <Modal
           isOpen={this.state.showSetUser}
@@ -78,7 +78,7 @@ class App extends React.Component {
             <br />
             <p className="disclaimer">
               {' '}
-              * your name will not be sent to any database and it will only be
+              * your name will not be sent to any database and will only be
               used to provide you a more personalized experience.
             </p>
           </div>
