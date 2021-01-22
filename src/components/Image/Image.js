@@ -18,6 +18,7 @@ class Image extends React.Component {
       size: 200,
       currentDegrees: 0,
       ModalIsOpen: false,
+      blendColor: 'transparent',
       expandedSize: 550
     };
   }
@@ -64,6 +65,32 @@ class Image extends React.Component {
   handleDelete() {
     this.props.removeImg(this.props.dto);
   }
+  
+  blendBackground() {
+    let current = this.state.blendColor;
+    
+    if (current === 'transparent') {
+      this.setState({
+        blendColor: 'red'
+      });
+    } else if (current === 'red') {
+      this.setState({
+        blendColor: 'blue'
+      });
+    } else if (current === 'blue') {
+      this.setState({
+        blendColor: 'green'
+      });
+    } else if (current === 'green') {
+      this.setState({
+        blendColor: 'orange'
+      });
+    } else if (current === 'orange') {
+      this.setState({
+        blendColor: 'transparent'
+      });
+    }
+  }
 
   urlFromDto(dto) {
     return `https://farm${dto.farm}.staticflickr.com/${dto.server}/${dto.id}_${dto.secret}.jpg`;
@@ -77,7 +104,9 @@ class Image extends React.Component {
           transform: `rotate(${this.state.currentDegrees}deg)`,
           backgroundImage: `url(${this.urlFromDto(this.props.dto)})`,
           width: this.state.size + 'px',
-          height: this.state.size + 'px'
+          height: this.state.size + 'px',
+          backgroundColor: this.state.blendColor,
+          backgroundBlendMode: 'screen'
         }}
       >
         <div
@@ -121,7 +150,9 @@ class Image extends React.Component {
               transform: `rotate(${this.state.currentDegrees}deg)`,
               backgroundImage: `url(${this.urlFromDto(this.props.dto)})`,
               width: '100%',
-              height: '100%'
+              height: '100%',
+              backgroundColor: this.state.blendColor,
+              backgroundBlendMode: 'screen'
             }}
           >
             <div
@@ -147,6 +178,12 @@ class Image extends React.Component {
                 className="image-icon"
                 name="compress"
                 title="contract"
+              />
+              <FontAwesome
+                onClick={() => this.blendBackground()}
+                className="image-icon"
+                name="tint"
+                title="paint background"
               />
             </div>
           </div>
