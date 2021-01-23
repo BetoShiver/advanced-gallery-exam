@@ -19,7 +19,8 @@ class Image extends React.Component {
       currentDegrees: 0,
       ModalIsOpen: false,
       blendColor: 'transparent',
-      expandedSize: 550
+      expandedSize: 550, 
+      shape: '0'
     };
   }
 
@@ -92,6 +93,18 @@ class Image extends React.Component {
     }
   }
 
+  changeShape() {
+    if (this.state.shape === '0') {
+      this.setState({
+        shape: '100%'
+      })
+    } else {
+      this.setState({
+        shape: '0'
+      });
+    }
+  }
+
   urlFromDto(dto) {
     return `https://farm${dto.farm}.staticflickr.com/${dto.server}/${dto.id}_${dto.secret}.jpg`;
   }
@@ -106,7 +119,8 @@ class Image extends React.Component {
           width: this.state.size + 'px',
           height: this.state.size + 'px',
           backgroundColor: this.state.blendColor,
-          backgroundBlendMode: 'screen'
+          backgroundBlendMode: 'screen',
+          borderRadius: this.state.shape
         }}
       >
         <div
@@ -140,7 +154,8 @@ class Image extends React.Component {
               padding: 0,
               margin: 'auto',
               width: this.state.expandedSize + 'px',
-              height: this.state.expandedSize + 'px'
+              height: this.state.expandedSize + 'px',
+              borderRadius: this.state.shape
             }
           }}
         >
@@ -152,7 +167,8 @@ class Image extends React.Component {
               width: '100%',
               height: '100%',
               backgroundColor: this.state.blendColor,
-              backgroundBlendMode: 'screen'
+              backgroundBlendMode: 'screen',
+              borderRadius: this.state.shape
             }}
           >
             <div
@@ -184,6 +200,12 @@ class Image extends React.Component {
                 className="image-icon"
                 name="tint"
                 title="paint background"
+              />
+              <FontAwesome
+                onClick={() => this.changeShape()}
+                className="image-icon"
+                name="stop-circle"
+                title="change shape"
               />
             </div>
           </div>
