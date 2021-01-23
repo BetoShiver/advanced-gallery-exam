@@ -19,7 +19,7 @@ class App extends React.Component {
     e.preventDefault()
     window.localStorage.setItem('user', this.state.user)
     this.setState({
-      showSetUser: false,
+      showSetUser: false
     });
   }
   
@@ -31,7 +31,7 @@ class App extends React.Component {
       });
     }
   }
-
+ 
   render() {
     return (
       <div className="app-root">

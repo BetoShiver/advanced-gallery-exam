@@ -68,20 +68,22 @@ class Gallery extends React.Component {
     this.setState({
       galleryWidth: document.body.clientWidth
     });
-    // window.addEventListener(
-    //   'resize',
-    //   () => {
-    //   ;
-    //   this.setState({
-    //     galleryWidth: document.body.clientWidth
-    //   })}
-    // );
+    window.addEventListener(
+      'resize',
+      () => {
+        this.setState({
+          galleryWidth: document.body.clientWidth
+        });
+      }
+    );
     }
     
     componentWillUnmount() {
-      window.removeEventListener('resize',  this.setState({
-        galleryWidth: document.body.clientWidth
-      }));
+      window.removeEventListener('resize', () => {
+        this.setState({
+          galleryWidth: document.body.clientWidth
+        });
+      });
     }
     
     componentWillReceiveProps(props) {
