@@ -204,7 +204,7 @@ class Image extends React.Component {
               <FontAwesome
                 onClick={() => this.changeShape()}
                 className="image-icon"
-                name="stop-circle"
+                name={this.state.shape=== '0' ? 'circle' : 'square'}
                 title="change shape"
               />
             </div>
