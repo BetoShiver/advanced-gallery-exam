@@ -1,3 +1,15 @@
+# Additions To This Application
+this application was given to me with various tasks to complete which can be seen below, with one of the last of these tasks being innovating on it by adding new features to it. 
+
+To that end, I added the following:
+1. A modal appears when user comes to the site for the first time, asking for his name to personalize the title. Additionally, there is an option to change the name. 
+2. Added button on expanded image with option to give the image a color blend, which persists on the contracted image as well. 
+3. Similarly, added a button to change the shape of the image form square to circle and vice versa. 
+
+- Not really a feature, but I also added a css gradient to the header to male the title stand out a bit more
+
+
+
 # Flickr Gallery
 
 Welcome to the Flickr Gallery application.

@@ -12,11 +12,15 @@ export default class ChangeUser extends Component {
     }
     }
     
+  openModal() {
+    this.props.openModal()
+  }
+
   render() {
     return (
-      <p className="changeUser">
+      <p className="change-user">
         Not {this.props.user}?
-        <span onClick={() => this.props.openModal()}>Click here</span>{' '}
+        <span onClick={() => this.openModal()}>Click here</span>
       </p>
     );
   }

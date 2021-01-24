@@ -129,6 +129,7 @@ class Gallery extends React.Component {
     e.preventDefault();
   }
 
+
   render() {
     return (
       <InfiniteScroll
@@ -154,7 +155,7 @@ class Gallery extends React.Component {
               <Image
                 dto={dto}
                 galleryWidth={this.state.galleryWidth}
-                removeImg={(id) => this.removeImg(id)}
+                removeImg={(dto) => this.removeImg(dto)}
               />
             </span>
           ))}

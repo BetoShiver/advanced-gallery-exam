@@ -19,7 +19,7 @@ class Image extends React.Component {
       currentDegrees: 0,
       ModalIsOpen: false,
       blendColor: 'transparent',
-      expandedSize: 550, 
+      expandedSize: 550,
       shape: '0'
     };
   }

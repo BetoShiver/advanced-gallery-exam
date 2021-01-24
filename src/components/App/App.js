@@ -1,8 +1,9 @@
 import React from 'react';
 import './App.scss';
 import Gallery from '../Gallery';
-import Modal from 'react-modal';
 import ChangeUser from '../ChangeUser';
+import UserPrompt from '../UserPrompt';
+
 class App extends React.Component {
   static propTypes = {};
 
@@ -14,15 +15,15 @@ class App extends React.Component {
       user: ''
     };
   }
-  
-  setUser(e) {
-    e.preventDefault()
-    window.localStorage.setItem('user', this.state.user)
+
+  setUser(user) {
+    window.localStorage.setItem('user', user);
     this.setState({
+      user,
       showSetUser: false
     });
   }
-  
+
   changeUser(user) {
     if (user) {
       this.setState({
@@ -31,7 +32,19 @@ class App extends React.Component {
       });
     }
   }
- 
+
+  closeModal() {
+    this.setState({
+      showSetUser: false
+    });
+  }
+
+  openModal() {
+    this.setState({
+      showSetUser: true
+    });
+  }
+
   render() {
     return (
       <div className="app-root">
@@ -44,45 +57,17 @@ class App extends React.Component {
           />
           <ChangeUser
             user={this.state.user}
-            openModal={() => this.setState({ showSetUser: true })}
+            openModal={
+             () => this.openModal()}
             setUser={(user) => this.changeUser(user)}
           />
         </div>
-        <Modal
-          isOpen={this.state.showSetUser}
-          appElement={document.getElementById('app')}
-          style={{
-            content: {
-              margin: 'auto',
-              width: '360px',
-              height: '150px',
-              backgroundColor: 'rgb(34, 51, 51)',
-              color: 'white',
-              display: 'flex',
-              justifyContent: 'center'
-            }
-          }}
-        >
-          <div className="set-user">
-            {this.state.user === '' && <p>Hello, and welcome to the site!</p>}
-            <p>Please enter you name below</p>
-            <form onSubmit={(e) => this.setUser(e)}>
-              <input
-                type="text"
-                onChange={(event) =>
-                  this.setState({ user: event.target.value })
-                }
-              />
-              <input type="submit" value="Enter" className="submit" />
-            </form>
-            <br />
-            <p className="disclaimer">
-              {' '}
-              * your name will not be sent to any database and will only be
-              used to provide you a more personalized experience.
-            </p>
-          </div>
-        </Modal>
+        <UserPrompt
+          user={this.state.user}
+          showSetUser={this.state.showSetUser}
+          setUser={(user) => this.setUser(user)}
+          setState={this.setState}
+        ></UserPrompt>
         <Gallery tag={this.state.tag} />
       </div>
     );
