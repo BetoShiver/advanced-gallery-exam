@@ -36,7 +36,6 @@ class Image extends React.Component {
       size,
       expandedSize
     });
-    console.log('size: ', size);
   }
 
   componentDidMount() {

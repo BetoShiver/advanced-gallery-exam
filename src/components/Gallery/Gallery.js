@@ -74,7 +74,6 @@ class Gallery extends React.Component {
         this.setState({
           galleryWidth: document.body.clientWidth
         });
-        console.log('resize: ', this.state.galleryWidth);
       }
     );
     }
