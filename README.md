@@ -5,7 +5,7 @@ To that end, I added the following:
 1. A modal appears when user comes to the site for the first time, asking for his name to personalize the title. Additionally, there is an option to change the name. 
 2. Added a button on expanded image with the option to give the image a color blend, which changes the contracted image as well. 
 3. Similarly, added a button to change the shape of the image form square to circle and vice versa. 
-4. Also added a button with the option to add a frame to the image.
+4. Also added a button with the option to add/remove a frame to the image.
 
 - Not really a feature, but I also added a css gradient to the header to male the title stand out a bit more.
 
@@ -33,7 +33,7 @@ Each image has three buttons that appear on mouse hover. You need to make them w
 
 ### Step 4 - Wrapping Up
 2. Try inovating the product, add any features you think are useful. **be creative, creative is good**.
-3. Deploy your result as a github page to `https://[YOUR_USERNAME].github.io/flickr-gallery/`
+3. Deploy your result as a github page to `https://[YOUR_USERNAME].github.io/flickr-gallery/`  --Done
 4. Send us an email with your repo link and the deployed app link
 
 ## Tips
