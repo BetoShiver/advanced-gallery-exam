@@ -1,5 +1,5 @@
 # Additions To This Application
-This application was given to me with various tasks to complete which can be seen below. One of the last of these tasks was innovating on it by adding new features to it. 
+This application was given to me with various tasks to complete which can be seen below. One of these tasks was innovating on it by adding new features to it. 
 To that end, I added the following:
 
 1. A modal appears when user comes to the site for the first time, asking for his name to personalize the title. Additionally, there is an option to change the name. 
