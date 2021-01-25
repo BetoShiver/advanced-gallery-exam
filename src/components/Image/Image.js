@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
-import Modal from 'react-modal';
 import './Image.scss';
+import ExpandedImage from '../ExpandedImage/ExpandedImage';
 
 class Image extends React.Component {
   static propTypes = {
@@ -25,7 +25,7 @@ class Image extends React.Component {
   }
 
   calcImageSize() {
-    const { galleryWidth } = this.props;
+    let { galleryWidth } = this.props;
     const targetSize = 200;
     const imagesPerRow = Math.round(galleryWidth / targetSize);
     const size = galleryWidth / imagesPerRow;
@@ -66,10 +66,10 @@ class Image extends React.Component {
   handleDelete() {
     this.props.removeImg(this.props.dto);
   }
-  
+
   blendBackground() {
     let current = this.state.blendColor;
-    
+
     if (current === 'transparent') {
       this.setState({
         blendColor: 'red'
@@ -97,7 +97,7 @@ class Image extends React.Component {
     if (this.state.shape === '0') {
       this.setState({
         shape: '100%'
-      })
+      });
     } else {
       this.setState({
         shape: '0'
@@ -145,71 +145,20 @@ class Image extends React.Component {
             title="expand"
           />
         </div>
-        <Modal
-          isOpen={this.state.ModalIsOpen}
-          onRequestClose={() => this.closeModal()}
-          appElement={document.getElementById('app')}
-          style={{
-            content: {
-              padding: 0,
-              margin: 'auto',
-              width: this.state.expandedSize + 'px',
-              height: this.state.expandedSize + 'px',
-              borderRadius: this.state.shape
-            }
-          }}
-        >
-          <div
-            className="image-root"
-            style={{
-              transform: `rotate(${this.state.currentDegrees}deg)`,
-              backgroundImage: `url(${this.urlFromDto(this.props.dto)})`,
-              width: '100%',
-              height: '100%',
-              backgroundColor: this.state.blendColor,
-              backgroundBlendMode: 'screen',
-              borderRadius: this.state.shape
-            }}
-          >
-            <div
-              style={{
-                transform: `rotate(${360 - this.state.currentDegrees}deg)`,
-                cursor: 'pointer'
-              }}
-            >
-              <FontAwesome
-                onClick={() => this.handleRotate()}
-                className="image-icon"
-                name="sync-alt"
-                title="rotate"
-              />
-              <FontAwesome
-                onClick={() => this.handleDelete()}
-                className="image-icon"
-                name="trash-alt"
-                title="delete"
-              />
-              <FontAwesome
-                onClick={() => this.closeModal()}
-                className="image-icon"
-                name="compress"
-                title="contract"
-              />
-              <FontAwesome
-                onClick={() => this.blendBackground()}
-                className="image-icon"
-                name="tint"
-                title="paint background"
-              />
-              <FontAwesome
-                onClick={() => this.changeShape()}
-                className="image-icon"
-                name={this.state.shape=== '0' ? 'circle' : 'square'}
-                title="change shape"
-              />
-            </div>
-          </div>
-        </Modal>
+        <ExpandedImage
+          ModalIsOpen={this.state.ModalIsOpen}
+          closeModal={()=> this.closeModal()}
+          expandedSize={this.state.expandedSize}
+          shape={this.state.shape}
+          currentDegrees={this.state.currentDegrees}
+          urlFromDto={(dto)=> this.urlFromDto(dto)}
+          dto={this.props.dto}
+          blendColor={this.state.blendColor}
+          handleRotate={() => this.handleRotate()}
+          handleDelete={() => this.handleDelete()}
+          blendBackground={() => this.blendBackground()}
+          changeShape={()=> this.changeShape()}
+        ></ExpandedImage>
       </div>
     );
   }

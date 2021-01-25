@@ -11,7 +11,7 @@ export default class ChangeUser extends Component {
       this.props.setUser(user)
     }
     }
-    
+     
   openModal() {
     this.props.openModal()
   }
