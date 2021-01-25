@@ -20,7 +20,7 @@ class ExpandedImage extends React.Component {
             margin: 'auto',
             width: this.props.expandedSize + 'px',
             height: this.props.expandedSize + 'px',
-            borderRadius: this.props.shape
+            borderRadius: this.props.shape,
           }
         }}
       >
@@ -33,7 +33,8 @@ class ExpandedImage extends React.Component {
             height: '100%',
             backgroundColor: this.props.blendColor,
             backgroundBlendMode: 'screen',
-            borderRadius: this.props.shape
+            borderRadius: this.props.shape,
+            border: this.props.border
           }}
         >
           <div
@@ -71,6 +72,14 @@ class ExpandedImage extends React.Component {
               className="image-icon"
               name={this.props.shape === '0' ? 'circle' : 'square'}
               title="change shape"
+            />
+            <FontAwesome
+              onClick={() => this.props.addBorder()}
+              className="image-icon"
+              name="circle-notch"
+              title={
+                this.props.border === 'none' ? 'add frame' : 'remove frame'
+              }
             />
           </div>
         </div>

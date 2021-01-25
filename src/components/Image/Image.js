@@ -20,7 +20,8 @@ class Image extends React.Component {
       ModalIsOpen: false,
       blendColor: 'transparent',
       expandedSize: 550,
-      shape: '0'
+      shape: '0',
+      border: 'none'
     };
   }
 
@@ -105,6 +106,18 @@ class Image extends React.Component {
     }
   }
 
+  addBorder() {
+      if (this.state.border === 'none') {
+        this.setState({
+          border: '5px solid black'
+        });
+      } else {
+        this.setState({
+          border: 'none'
+        });
+      }
+  }
+
   urlFromDto(dto) {
     return `https://farm${dto.farm}.staticflickr.com/${dto.server}/${dto.id}_${dto.secret}.jpg`;
   }
@@ -120,7 +133,8 @@ class Image extends React.Component {
           height: this.state.size + 'px',
           backgroundColor: this.state.blendColor,
           backgroundBlendMode: 'screen',
-          borderRadius: this.state.shape
+          borderRadius: this.state.shape,
+          border: this.state.border
         }}
       >
         <div
@@ -147,17 +161,19 @@ class Image extends React.Component {
         </div>
         <ExpandedImage
           ModalIsOpen={this.state.ModalIsOpen}
-          closeModal={()=> this.closeModal()}
+          closeModal={() => this.closeModal()}
           expandedSize={this.state.expandedSize}
           shape={this.state.shape}
           currentDegrees={this.state.currentDegrees}
-          urlFromDto={(dto)=> this.urlFromDto(dto)}
+          urlFromDto={(dto) => this.urlFromDto(dto)}
           dto={this.props.dto}
           blendColor={this.state.blendColor}
           handleRotate={() => this.handleRotate()}
           handleDelete={() => this.handleDelete()}
           blendBackground={() => this.blendBackground()}
-          changeShape={()=> this.changeShape()}
+          changeShape={() => this.changeShape()}
+          border={this.state.border}
+          addBorder={() => this.addBorder() }
         ></ExpandedImage>
       </div>
     );
