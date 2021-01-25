@@ -29,7 +29,7 @@ class Image extends React.Component {
     let { galleryWidth } = this.props;
     const targetSize = 200;
     const imagesPerRow = Math.round(galleryWidth / targetSize);
-    const size = galleryWidth / imagesPerRow;
+    const size = Math.floor(galleryWidth / imagesPerRow); ;
     const expandedSmallScreen = galleryWidth * 0.8;
     const expandedSize = galleryWidth > 600 ? 550 : expandedSmallScreen;
     this.setState({
@@ -40,6 +40,7 @@ class Image extends React.Component {
 
   componentDidMount() {
     this.calcImageSize();
+
   }
 
   handleRotate() {
