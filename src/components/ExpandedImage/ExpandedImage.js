@@ -20,7 +20,7 @@ class ExpandedImage extends React.Component {
             margin: 'auto',
             width: this.props.expandedSize + 'px',
             height: this.props.expandedSize + 'px',
-            borderRadius: this.props.shape,
+            borderRadius: this.props.shape
           }
         }}
       >

@@ -9,7 +9,6 @@ To that end, I added the following:
 
 - Not really a feature, but I also added a css gradient to the header to male the title stand out a bit more.
 
-
 # Flickr Gallery
 
 Welcome to the Flickr Gallery application.
