@@ -4,7 +4,7 @@ import axios from 'axios';
 import Image from '../Image';
 import './Gallery.scss';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { v4 as uuidv4 } from 'uuid';
+//import { v4 as uuidv4 } from 'uuid';
 
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
@@ -74,6 +74,7 @@ class Gallery extends React.Component {
         this.setState({
           galleryWidth: document.body.clientWidth
         });
+        console.log('resize: ', this.state.galleryWidth);
       }
     );
     }
@@ -146,7 +147,7 @@ class Gallery extends React.Component {
         <div className="gallery-root" onDragOver={(e) => this.dragOver(e)}>
           {this.state.images.map((dto, index) => (
             <span
-              key={uuidv4()}
+              key={dto.id + index}
               draggable
               onDrop={(e) => this.handleDrop(e, index)}
               onDragStart={(e) => this.dragStart(e, index)}

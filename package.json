@@ -83,8 +83,7 @@
     "react-dom": "^15.0.0",
     "react-fontawesome": "^1.6.1",
     "react-infinite-scroll-component": "3.0.2",
-    "react-modal": "^3.12.1",
-    "uuid": "^8.3.2"
+    "react-modal": "^3.12.1"
   },
   "gh-pages-deploy": {
     "staticpath": "dist",

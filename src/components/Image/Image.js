@@ -29,19 +29,26 @@ class Image extends React.Component {
     let { galleryWidth } = this.props;
     const targetSize = 200;
     const imagesPerRow = Math.round(galleryWidth / targetSize);
-    const size = Math.floor(galleryWidth / imagesPerRow); ;
+    const size = Math.floor(galleryWidth / imagesPerRow);
     const expandedSmallScreen = galleryWidth * 0.8;
     const expandedSize = galleryWidth > 600 ? 550 : expandedSmallScreen;
     this.setState({
       size,
       expandedSize
     });
+    console.log('size: ', size);
   }
 
   componentDidMount() {
     this.calcImageSize();
-
   }
+
+  componentWillReceiveProps() {
+    setTimeout(() => {
+      this.calcImageSize();
+    }, 100);
+  }
+
 
   handleRotate() {
     let newDegrees = this.state.currentDegrees + 90;
@@ -108,15 +115,15 @@ class Image extends React.Component {
   }
 
   addBorder() {
-      if (this.state.border === 'none') {
-        this.setState({
-          border: '5px solid black'
-        });
-      } else {
-        this.setState({
-          border: 'none'
-        });
-      }
+    if (this.state.border === 'none') {
+      this.setState({
+        border: '5px solid black'
+      });
+    } else {
+      this.setState({
+        border: 'none'
+      });
+    }
   }
 
   urlFromDto(dto) {
@@ -174,7 +181,7 @@ class Image extends React.Component {
           blendBackground={() => this.blendBackground()}
           changeShape={() => this.changeShape()}
           border={this.state.border}
-          addBorder={() => this.addBorder() }
+          addBorder={() => this.addBorder()}
         ></ExpandedImage>
       </div>
     );
